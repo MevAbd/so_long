@@ -10,6 +10,18 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <mlx.h>
+
+typedef struct 	s_map
+{
+	int	nlig;
+	int	ncol;
+	int	map_error;
+	int	wall;
+	int	coll;
+	int	exit;
+	int	player;
+}				t_map;
 
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s);
@@ -20,5 +32,6 @@ char	*ft_fill_line(char **str, char *line);
 char	*get_next_line(int fd);
 int		ft_check(const char *str);
 int		ft_read(int *ret, int fd, char **buff);
+int		ft_strlen_bis(char *s);
 
 #endif

@@ -1,8 +1,8 @@
-SRC = main.c /gnl/gnl.c /gnl/gnl_utils.c 
+SRC = main.c $(wildcard gnl/*.c) $(wildcard lib/*.c)
 
 OBJ = ${SRC:.c=.o}
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror #-L/usr/X11/lib -L/usr/local/lib -lmlx -lXext -lX11
 
 .c.o:
 	gcc $(FLAGS) -c $< -o $(<:.c=.o)
