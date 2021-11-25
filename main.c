@@ -7,7 +7,7 @@ t_map	ft_check_map(char *str, t_map map)
 	i = 0;
 	while (str[i] != '\n')
 	{
-		if (str[i] == 1)
+		if (str[i] == '1')
 			map.wall += 1;
 		else if (str[i] == 'C')
 			map.coll += 1;
@@ -15,9 +15,7 @@ t_map	ft_check_map(char *str, t_map map)
 			map.exit += 1;
 		else if (str[i] == 'P')
 			map.player += 1;
-		else if (str[i] == 0)
-			i++;
-		else
+		else if (str[i] != '1' && str[i] != 'C' && str[i] != 'E' && str[i] != 'P' && str[i] != '0')
 		{
 			map.map_error = 1;
 			return (map);
@@ -67,7 +65,7 @@ int main(int ac, char **av)
 	{
 		fd = open(av[1], O_RDONLY);
 		map = ft_rectangular(fd);
-		if (map.map_error == 1)
+		if (map.map_error == 1 || map.exit == 0 || map.player == 0 || map.coll == 0)
 		{
 			write(1, "map error\n", 10);
 			return (0);
