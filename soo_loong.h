@@ -10,7 +10,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include <mlx.h>
+//# include <mlx.h>
 
 typedef struct 	s_map
 {
@@ -21,6 +21,7 @@ typedef struct 	s_map
 	int	coll;
 	int	exit;
 	int	player;
+	int	**tab;
 }				t_map;
 
 size_t	ft_strlen(const char *s);
