@@ -34,5 +34,8 @@ char	*get_next_line(int fd);
 int		ft_check(const char *str);
 int		ft_read(int *ret, int fd, char **buff);
 int		ft_strlen_bis(char *s);
-
+t_map	ft_error(int fd, char *av);
+void	ft_free_tab(t_map map);
+void	ft_print_tab(t_map map);
+t_map	ft_fill_tab(t_map map, int fd);
 #endif

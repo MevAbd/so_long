@@ -1,4 +1,4 @@
-SRC = main.c $(wildcard gnl/*.c) $(wildcard lib/*.c)
+SRC = main.c $(wildcard gnl/*.c) $(wildcard lib/*.c) $(wildcard parsing/*.c)
 
 OBJ = ${SRC:.c=.o}
 
