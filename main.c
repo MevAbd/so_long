@@ -6,7 +6,7 @@
 /*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 02:31:26 by malbrand          #+#    #+#             */
-/*   Updated: 2021/11/26 04:49:20 by malbrand         ###   ########.fr       */
+/*   Updated: 2021/11/26 05:33:29 by malbrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,43 +72,45 @@ t_map	ft_rectangular(int fd)
 	free(str);
 	return (map);
 }
-/*
-t_map	ft_fill_tab(t_map map)
+
+t_map	ft_fill_tab(t_map map, char *av)
 {
 	int		lig;
+	int		fd;
 	int		col;
 	char	*str;
 	int		i;
 
+	fd = open(av, O_RDONLY);
 	lig = 0;
-	i = 0;
-	map->tab = (int **)malloc(sizeof((int *) * map.nlig));
-	if (map->tab == NULL)
-		return (NULL);
+	map.tab = (int **)malloc(map.nlig * sizeof(int *));
+//	if (map.tab == NULL)
+//		return (NULL);
 	str = get_next_line(fd);
-	while (lig < map.nlig)
+	while (str)
 	{
 		if (str != NULL)
 		{
-			map->tab[lig] = (int *)malloc(sizeof (int * map.ncoll + 1));
-			if (map->tab[lig] == NULL)
-				return (NULL);
+			map.tab[lig] = (int *)malloc((map.ncol + 1) * sizeof (int));
+//			if (map.tab[lig] == NULL)
+//				return (NULL);
 			col = 0;
-			while (str[i] != '\n')
+			i = 0;
+			while (i < map.ncol)
 			{
 				if (str[i] == '0')
-					tab[lig][col] = 0;
+					map.tab[lig][col] = 0;
 				else if (str[i] == '1')
-					tab[lig][col] = 1;
+					map.tab[lig][col] = 1;
 				else if (str[i] == 'C')
-					tab[lig][col] = 2;
+					map.tab[lig][col] = 2;
 				else if (str[i] == 'E')
-					tab[lig][col] = 3;
+					map.tab[lig][col] = 3;
 				else if (str[i] == 'P')
-					tab[lig][col] = 4;
+					map.tab[lig][col] = 4;
 				col++;
+				i++;
 			}
-			tab[lig][col] = '\0';
 		}
 		lig++;
 		free(str);	
@@ -117,19 +119,19 @@ t_map	ft_fill_tab(t_map map)
 	free(str);
 	return (map);
 }
-*/
-t_map	ft_error(int fd)
+
+t_map	ft_error(int fd, char *av)
 {
 	t_map	map;
 
 	map = ft_rectangular(fd);
 	if (map.map_error == 1 || map.exit == 0 || map.player == 0 || map.coll == 0)
 		map.map_error = 1;
-//	else 
-//		map = ft_fill_tab(map);
+	else 
+		map = ft_fill_tab(map, av);
 	return (map);
 }
-/*
+
 void	ft_print_tab(t_map map)
 {
 	int	lig;
@@ -141,13 +143,24 @@ void	ft_print_tab(t_map map)
 		col = 0;
 		while (col < map.ncol)
 		{
-			printf("%d", map->tab[lig][col]);
+			printf("%d", map.tab[lig][col]);
 			col++;
 		}
+		printf("\n");
 		lig++;
 	}
 }
-*/
+
+void	ft_free_tab(t_map map)
+{
+	int	i;
+
+	i = 0;
+	while (i < map.nlig)
+		free(map.tab[i++]);
+	free(map.tab);
+}
+
 int	main(int ac, char **av)
 {
 	int		fd;
@@ -158,12 +171,13 @@ int	main(int ac, char **av)
 	else if (ac == 2)
 	{
 		fd = open(av[1], O_RDONLY);
-		map = ft_error(fd);
+		map = ft_error(fd, av[1]);
 		if (map.map_error == 1)
 			write(1, "map error\n", 10);
 		
-//		else
-//			ft_print_tab(map);
+		else
+			ft_print_tab(map);
+		ft_free_tab(map);
 	}
 	else if (ac > 2)
 		write (1, "too much arg\n", 13);
