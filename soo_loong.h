@@ -6,7 +6,7 @@
 /*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 07:37:14 by malbrand          #+#    #+#             */
-/*   Updated: 2021/11/26 07:42:29 by malbrand         ###   ########.fr       */
+/*   Updated: 2021/11/27 00:25:45 by edvicair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ void	ft_print_tab(t_map map);
 t_map	ft_fill_tab(t_map map, int fd);
 t_map	ft_error(int fd, char *av);
 size_t	ft_strlen(const char *s);
+t_map	ft_check_wall(t_map map);
 
 #endif

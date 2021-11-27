@@ -6,60 +6,11 @@
 /*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 05:37:55 by malbrand          #+#    #+#             */
-/*   Updated: 2021/11/26 08:40:35 by edvicair         ###   ########.fr       */
+/*   Updated: 2021/11/27 00:25:08 by edvicair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../soo_loong.h"
-
-t_map	ft_check_wall(t_map map)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (j < map.ncol)
-	{
-		if (map.tab[i][j] != 1)
-			map.map_error = 1;
-		j++;
-		if (j == (map.ncol) && i != (map.nlig - 1))
-		{
-			i = map.nlig - 1;
-			j = 0;
-		}
-	}
-	j = 0;
-/*	while (j < map.ncol)
-	{
-		if (map.tab[map.nlig - 1][j] != 1)
-			map.map_error = 1;
-		j++;
-	}*/
-	while (i < map.nlig)
-	{
-		if (map.tab[i][j] != 1)
-			map.map_error = 1;
-		i++;
-		printf("%d\n", map.ncol);
-		printf("%d\n", map.nlig);
-		if (i == (map.nlig) && j != (map.ncol - 1))
-		{
-			printf("icci\n");
-			j = map.ncol - 1;
-			i = 0;
-		}
-	}
-/*	i = 0;
-	while (i < map.nlig)
-	{
-		if (map.tab[i][map.ncol - 1] != 1)
-			map.map_error = 1;
-		i++;
-	}*/
-	return (map);
-}
 
 t_map	ft_check_map(char *str, t_map map)
 {

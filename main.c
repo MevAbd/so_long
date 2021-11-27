@@ -6,7 +6,7 @@
 /*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 02:31:26 by malbrand          #+#    #+#             */
-/*   Updated: 2021/11/26 08:19:40 by edvicair         ###   ########.fr       */
+/*   Updated: 2021/11/26 23:50:33 by edvicair         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int ac, char **av)
 		fd = open(av[1], O_RDONLY);
 		map = ft_error(fd, av[1]);
 		if (map.map_error == 1)
-			write(1, "map error\n", 10);	
+			write(1, "map error\n", 10);
 		else
 			ft_print_tab(map);
 		ft_free_tab(map);
