@@ -19,21 +19,35 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-//# include <mlx.h>
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 6
-# endif
+# include <mlx.h>
+
+# define BUFFER_SIZE 6
+# define IMG_W 66
+# define IMG_H 66
+
+typedef struct s_img
+{
+	void	*player_up;
+	void	*player_left;
+	void	*player_right;
+	void	*player_down;
+}				t_img;
 
 typedef struct s_map
 {
-	int	nlig;
-	int	ncol;
-	int	map_error;
-	int	wall;
-	int	coll;
-	int	exit;
-	int	player;
-	int	**tab;
+	int		nlig;
+	int		ncol;
+	int		lig;
+	int		col;
+	int		map_error;
+	int		wall;
+	int		coll;
+	int		exit;
+	int		player;
+	int		**tab;
+	void	*mlx;	
+	void	*mlx_win;
+	t_img	*add_img;
 }					t_map;
 
 int		ft_check(const char *str);
@@ -47,9 +61,12 @@ char	*ft_fill_line(char **str, char *line);
 char	*get_next_line(int fd);
 void	ft_free_tab(t_map map);
 void	ft_print_tab(t_map map);
+void	ft_init_img(t_map *map);
+void	ft_create_map(t_map *map);
+void	ft_write_error(t_map map);
 t_map	ft_fill_tab(t_map map, int fd);
 t_map	ft_error(int fd, char *av);
-size_t	ft_strlen(const char *s);
 t_map	ft_check_wall(t_map map);
+size_t	ft_strlen(const char *s);
 
 #endif

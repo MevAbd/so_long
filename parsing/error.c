@@ -38,15 +38,15 @@ t_map	ft_check_map(char *str, t_map map)
 	return (map);
 }
 
-t_map	ft_init_struct(t_map map)
+t_map	ft_init_struct(t_map *map)
 {
-	map.map_error = 0;
-	map.nlig = 0;
-	map.wall = 0;
-	map.coll = 0;
-	map.exit = 0;
-	map.player = 0;
-	return (map);
+	map->map_error = 0;
+	map->nlig = 0;
+	map->wall = 0;
+	map->coll = 0;
+	map->exit = 0;
+	map->player = 0;
+	return (*map);
 }
 
 t_map	ft_rectangular(int fd)
@@ -55,7 +55,7 @@ t_map	ft_rectangular(int fd)
 	t_map	map;
 
 	str = get_next_line(fd);
-	map = ft_init_struct(map);
+	map = ft_init_struct(&map);
 	map.ncol = ft_strlen_bis(str);
 	while (str)
 	{
@@ -80,12 +80,20 @@ t_map	ft_error(int fd, char *av)
 
 	fd_bis = open(av, O_RDONLY);
 	map = ft_rectangular(fd);
-	if (map.map_error == 1 || map.exit == 0 || map.player == 0 || map.coll == 0)
-		map.map_error = 1;
+	if (map.exit == 0)
+		map.map_error = 2;
+	else if (map.player == 0)
+		map.map_error = 3;
+	else if (map.player > 1)
+		map.map_error = 4;
+	else if (map.coll == 0)
+		map.map_error = 5;
 	else
 	{
 		map = ft_fill_tab(map, fd_bis);
 		map = ft_check_wall(map);
 	}
+	if (map.map_error != 0)
+		ft_write_error(map);
 	return (map);
 }
