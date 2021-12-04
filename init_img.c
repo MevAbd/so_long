@@ -39,6 +39,12 @@ void	ft_init_img(t_map *map)
 	map->add_img->corner_d_r = mlx_xpm_file_to_image(map->mlx, path, &width, &height);
 	path = "./img_final/w_h_right.XPM";
 	map->add_img->corner_h_r = mlx_xpm_file_to_image(map->mlx, path, &width, &height);
+	path = "./img_final/blood.xpm";
+	map->add_img->coll = mlx_xpm_file_to_image(map->mlx, path, &width, &height);
+	path = "./img_final/wall_inside.xpm";
+	map->add_img->wall_inside = mlx_xpm_file_to_image(map->mlx, path, &width, &height);
+	path = "./img_final/exit.xpm";
+	map->add_img->exit = mlx_xpm_file_to_image(map->mlx, path, &width, &height);
 }
 
 void	ft_put_map(t_map map)
@@ -149,3 +155,30 @@ void	ft_put_corner(t_map map)
 	mlx_put_image_to_window(map.mlx, map.mlx_win, map.add_img->corner_d_l, 0 * IMG_H, ((map.nlig - 1 )* IMG_W));
 	mlx_put_image_to_window(map.mlx, map.mlx_win, map.add_img->corner_d_r, ((map.ncol - 1) * IMG_H), ((map.nlig - 1) * IMG_W));
 }
+
+void	ft_put_img(t_map map)
+{
+	int	lig;
+	int	col;
+
+	lig = 1; 
+	col = 1;
+	ft_put_corner(map);
+	while (lig < map.nlig - 1)
+	{
+		col = 1;
+		while (col < map.ncol - 1)
+		{
+			if (map.tab[lig][col] == 2)
+				mlx_put_image_to_window(map.mlx, map.mlx_win, map.add_img->coll, col * IMG_H, lig * IMG_W);
+			else if (map.tab[lig][col] == 1)
+				mlx_put_image_to_window(map.mlx, map.mlx_win, map.add_img->wall_inside, col * IMG_H, lig * IMG_W);
+			else if (map.tab[lig][col] == 3)
+				mlx_put_image_to_window(map.mlx, map.mlx_win, map.add_img->exit, col * IMG_H, lig * IMG_W);
+			col++;
+		}
+		lig++;
+	}
+}
+
+

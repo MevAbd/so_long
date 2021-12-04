@@ -19,7 +19,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include "./mlx/mlx.h"
+# include <mlx.h>
+//# include "./mlx/mlx.h"
 
 # define BUFFER_SIZE 6
 # define IMG_W 32
@@ -27,6 +28,7 @@
 
 typedef struct s_img
 {
+	void	*ground;
 	void	*player_up;
 	void	*player_left;
 	void	*player_right;
@@ -35,11 +37,13 @@ typedef struct s_img
 	void	*wall_down;
 	void	*wall_left;
 	void	*wall_right;
-	void	*ground;
 	void	*corner_h_l;
 	void	*corner_h_r;
 	void	*corner_d_l;
 	void	*corner_d_r;
+	void	*coll;
+	void	*wall_inside;
+	void	*exit;
 }				t_img;
 
 typedef struct s_map
@@ -71,7 +75,7 @@ void	ft_free_tab(t_map map);
 void	ft_print_tab(t_map map);
 void	ft_init_img(t_map *map);
 void	ft_create_map(t_map *map);
-void	ft_put_corner(t_map map);
+void	ft_put_img(t_map map);
 void	ft_write_error(t_map map);
 t_map	ft_fill_tab(t_map map, int fd);
 t_map	ft_error(int fd, char *av);

@@ -21,13 +21,12 @@ int	main(int ac, char **av)
 	{
 		fd = open(av[1], O_RDONLY);
 		map = ft_error(fd, av[1]);
-		printf("lig == %d col == %d\n", map.nlig, map.ncol);	
 		if (map.map_error == 0)
 		{
 			map.mlx = mlx_init();
 			ft_init_img(&map);
 			map.mlx_win = mlx_new_window(map.mlx, (map.ncol * IMG_W), (map.nlig * IMG_H), "so_long");
-			ft_put_corner(map);
+			ft_put_img(map);
 			mlx_loop(map.mlx);
 		}
 	}
