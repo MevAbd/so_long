@@ -1,4 +1,4 @@
-SRC = main.c init_img.c $(wildcard gnl/*.c) $(wildcard lib/*.c) $(wildcard parsing/*.c)
+SRC = main.c $(wildcard gnl/*.c) $(wildcard lib/*.c) $(wildcard parsing/*.c) $(wildcard put_img/*.c)
 
 OBJ = ${SRC:.c=.o}
 
