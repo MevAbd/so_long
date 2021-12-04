@@ -6,7 +6,7 @@
 /*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 02:28:10 by malbrand          #+#    #+#             */
-/*   Updated: 2021/12/04 05:39:26 by malbrand         ###   ########.fr       */
+/*   Updated: 2021/12/04 04:57:55 by malbrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,6 @@ void	ft_init_img(t_map *map)
 	map->add_img->wall_left = mlx_xpm_file_to_image(map->mlx, path, &width, &height);
 	path = "./img_final/wall_right.XPM";
 	map->add_img->wall_right = mlx_xpm_file_to_image(map->mlx, path, &width, &height);
-	path = "./img_final/angle.XPM";
-	map->add_img->corner_h_l = mlx_xpm_file_to_image(map->mlx, path, &width, &height);
-	path = "./img_final/w_d_left.XPM";
-	map->add_img->corner_d_l = mlx_xpm_file_to_image(map->mlx, path, &width, &height);
-	path = "./img_final/w_d_right.XPM";
-	map->add_img->corner_d_r = mlx_xpm_file_to_image(map->mlx, path, &width, &height);
-	path = "./img_final/w_h_right.XPM";
-	map->add_img->corner_h_r = mlx_xpm_file_to_image(map->mlx, path, &width, &height);
 }
 
 void	ft_put_map(t_map map)
@@ -53,7 +45,7 @@ void	ft_put_map(t_map map)
 		col = 0;
 		while (col < map.ncol)
 		{
-			mlx_put_image_to_window(map.mlx, map.mlx_win, map.add_img->ground, col * IMG_H, lig * IMG_W);
+				mlx_put_image_to_window(map.mlx, map.mlx_win, map.add_img->ground, lig * IMG_H, col * IMG_W);
 			col++;
 		}
 		lig++;
@@ -73,7 +65,7 @@ void	ft_put_wall_up(t_map map)
 		col = 0;
 		while (col < map.ncol)
 		{
-			mlx_put_image_to_window(map.mlx, map.mlx_win, map.add_img->wall_up, col * IMG_H, lig * IMG_W);
+				mlx_put_image_to_window(map.mlx, map.mlx_win, map.add_img->wall_up, col * IMG_H, lig * IMG_W);
 			col++;
 		}
 		lig++;
@@ -93,7 +85,7 @@ void	ft_put_wall_down(t_map map)
 		col = 0;
 		while (col < map.ncol)
 		{
-			mlx_put_image_to_window(map.mlx, map.mlx_win, map.add_img->wall_down, col * IMG_H, lig * IMG_W);
+				mlx_put_image_to_window(map.mlx, map.mlx_win, map.add_img->wall_down, col * IMG_H, lig * IMG_W);
 			col++;
 		}
 		lig++;
@@ -113,7 +105,7 @@ void	ft_put_wall_right(t_map map)
 		col = map.ncol -1;
 		while (col < map.ncol)
 		{
-			mlx_put_image_to_window(map.mlx, map.mlx_win, map.add_img->wall_right, col * IMG_H, lig * IMG_W);
+				mlx_put_image_to_window(map.mlx, map.mlx_win, map.add_img->wall_right, col * IMG_H, lig * IMG_W);
 			col++;
 		}
 		lig++;
@@ -134,18 +126,9 @@ void	ft_put_wall_left(t_map map)
 		col = 0;
 		while (col < 1)
 		{
-			mlx_put_image_to_window(map.mlx, map.mlx_win, map.add_img->wall_left, col * IMG_H, lig * IMG_W);
+				mlx_put_image_to_window(map.mlx, map.mlx_win, map.add_img->wall_left, col * IMG_H, lig * IMG_W);
 			col++;
 		}
 		lig++;
 	}
-}
-
-void	ft_put_corner(t_map map)
-{
-	ft_put_wall_left(map);
-	mlx_put_image_to_window(map.mlx, map.mlx_win, map.add_img->corner_h_l, 0 * IMG_H, 0 * IMG_W);
-	mlx_put_image_to_window(map.mlx, map.mlx_win, map.add_img->corner_h_r, ((map.ncol - 1) * IMG_H), 0 * IMG_W);
-	mlx_put_image_to_window(map.mlx, map.mlx_win, map.add_img->corner_d_l, 0 * IMG_H, ((map.nlig - 1 )* IMG_W));
-	mlx_put_image_to_window(map.mlx, map.mlx_win, map.add_img->corner_d_r, ((map.ncol - 1) * IMG_H), ((map.nlig - 1) * IMG_W));
 }

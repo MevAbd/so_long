@@ -6,7 +6,7 @@
 /*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 07:37:14 by malbrand          #+#    #+#             */
-/*   Updated: 2021/11/27 00:25:45 by edvicair         ###   ########.fr       */
+/*   Updated: 2021/12/04 05:38:46 by malbrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include <mlx.h>
+# include "./mlx/mlx.h"
 
 # define BUFFER_SIZE 6
-# define IMG_W 66
-# define IMG_H 66
+# define IMG_W 32
+# define IMG_H 32
 
 typedef struct s_img
 {
@@ -31,15 +31,23 @@ typedef struct s_img
 	void	*player_left;
 	void	*player_right;
 	void	*player_down;
+	void	*wall_up;
+	void	*wall_down;
+	void	*wall_left;
+	void	*wall_right;
+	void	*ground;
+	void	*corner_h_l;
+	void	*corner_h_r;
+	void	*corner_d_l;
+	void	*corner_d_r;
 }				t_img;
 
 typedef struct s_map
 {
 	int		nlig;
 	int		ncol;
-	int		lig;
-	int		col;
 	int		map_error;
+	int		col;
 	int		wall;
 	int		coll;
 	int		exit;
@@ -63,6 +71,7 @@ void	ft_free_tab(t_map map);
 void	ft_print_tab(t_map map);
 void	ft_init_img(t_map *map);
 void	ft_create_map(t_map *map);
+void	ft_put_corner(t_map map);
 void	ft_write_error(t_map map);
 t_map	ft_fill_tab(t_map map, int fd);
 t_map	ft_error(int fd, char *av);

@@ -1,10 +1,11 @@
-SRC = main.c $(wildcard gnl/*.c) $(wildcard lib/*.c) $(wildcard parsing/*.c)
+SRC = main.c init_img.c $(wildcard gnl/*.c) $(wildcard lib/*.c) $(wildcard parsing/*.c)
 
 OBJ = ${SRC:.c=.o}
 
-FLAGS = -Wall -Wextra -Werror -L/usr/X11/lib -L/usr/local/lib -lmlx -lXext -lX11
+FLAGS = -Wall -Wextra -Werror -fsanitize=address
 
-#MLX_FLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
+MLX_FLAGS = -L./mlx -L./mlx -lmlx -lXext -lX11
+
 
 .c.o:
 	gcc $(FLAGS) -c $< -o $(<:.c=.o)
@@ -12,7 +13,7 @@ FLAGS = -Wall -Wextra -Werror -L/usr/X11/lib -L/usr/local/lib -lmlx -lXext -lX11
 NAME = so_long
 
 $(NAME): $(OBJ)
-	gcc $(FLAGS) -o $(NAME) $(OBJ)
+	gcc $(FLAGS) -o $(NAME) $(OBJ) $(MLX_FLAGS)
 
 clean:
 	rm -f $(OBJ)
