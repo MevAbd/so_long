@@ -20,10 +20,11 @@ int	closeee(int keycode, t_vars *vars)
 	return (0);
 }*/
 
-void	ft_event(t_map *map)
+void	ft_test(t_map *map)
 {
 	// closing grace a la croix 
-	mlx_key_hook(map->mlx_win, ft_key_event, map);
+	mlx_hook(map->mlx_win, 17, 1L << 2, ft_exit, map);
+	mlx_key_hook(map->mlx_win, ft_key, map);
 }
 
 int	main(int ac, char **av)
@@ -42,7 +43,7 @@ int	main(int ac, char **av)
 			map.mlx_win = mlx_new_window(map.mlx, (map.ncol * IMG_W),
 					(map.nlig * IMG_H), "so_long");
 			ft_put_img(map);
-			ft_event(&map);
+			ft_test(&map);
 			mlx_loop(map.mlx);
 		}
 	}

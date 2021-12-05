@@ -19,15 +19,12 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-//# include <mlx.h>
-# include "./mlx/mlx.h"
+# include <mlx.h>
+//# include "../mlx/mlx.h"
 
 # define BUFFER_SIZE 6
 # define IMG_W 32
 # define IMG_H 32
-# define DOWN 1
-# define LEFT -1
-# define RIGHT 1
 
 typedef struct s_img
 {
@@ -54,7 +51,6 @@ typedef struct s_map
 	int		nlig;
 	int		ncol;
 	int		map_error;
-	int		col;
 	int		wall;
 	int		coll;
 	int		exit;
@@ -62,6 +58,7 @@ typedef struct s_map
 	int		p_lig;
 	int		p_col;
 	int		**tab;
+	int		moove;
 	void	*mlx;	
 	void	*mlx_win;
 	t_img	*add_img;
@@ -70,6 +67,7 @@ typedef struct s_map
 int		ft_check(const char *str);
 int		ft_read(int *ret, int fd, char **buff);
 int		ft_strlen_bis(char *s);
+int		ft_exit(t_map *map);
 char	*ft_strdup(const char *s);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
 char	*ft_strchr(const char *s, int c);
@@ -89,6 +87,8 @@ void	ft_put_wall_up(t_map map);
 void	ft_put_wall_down(t_map map);
 void	ft_put_corner(t_map map);
 void	ft_write_error(t_map map);
+void	ft_putnbr(int nb);
+int		ft_key(int key, t_map *map);
 t_map	ft_fill_tab(t_map map, int fd);
 t_map	ft_error(int fd, char *av);
 t_map	ft_check_wall(t_map map);

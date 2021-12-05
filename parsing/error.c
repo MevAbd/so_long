@@ -46,6 +46,7 @@ t_map	ft_init_struct(t_map *map)
 	map->coll = 0;
 	map->exit = 0;
 	map->player = 0;
+	map->moove = 0;
 	return (*map);
 }
 
