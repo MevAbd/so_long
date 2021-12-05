@@ -6,7 +6,7 @@
 /*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 05:38:33 by malbrand          #+#    #+#             */
-/*   Updated: 2021/11/26 06:01:59 by malbrand         ###   ########.fr       */
+/*   Updated: 2021/12/05 13:40:31 by malbrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@ t_map	ft_fill_bis(t_map map, char c, int lig, int col)
 	else if (c == 'E')
 		map.tab[lig][col] = 3;
 	else if (c == 'P')
+	{
 		map.tab[lig][col] = 4;
+		map.p_lig = lig;
+		map.p_col = col;
+	}
 	return (map);
 }
 
@@ -52,25 +56,6 @@ t_map	ft_fill_tab(t_map map, int fd)
 	}
 	free(str);
 	return (map);
-}
-
-void	ft_print_tab(t_map map)
-{
-	int	lig;
-	int	col;
-
-	lig = 0;
-	while (lig < map.nlig)
-	{
-		col = 0;
-		while (col < map.ncol)
-		{
-			printf("%d", map.tab[lig][col]);
-			col++;
-		}
-		printf("\n");
-		lig++;
-	}
 }
 
 void	ft_free_tab(t_map map)

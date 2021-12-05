@@ -6,7 +6,7 @@
 /*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 07:37:14 by malbrand          #+#    #+#             */
-/*   Updated: 2021/12/04 05:38:46 by malbrand         ###   ########.fr       */
+/*   Updated: 2021/12/05 13:36:44 by malbrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,15 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include <mlx.h>
-//# include "./mlx/mlx.h"
+//# include <mlx.h>
+# include "./mlx/mlx.h"
 
 # define BUFFER_SIZE 6
 # define IMG_W 32
 # define IMG_H 32
+# define DOWN 1
+# define LEFT -1
+# define RIGHT 1
 
 typedef struct s_img
 {
@@ -56,6 +59,8 @@ typedef struct s_map
 	int		coll;
 	int		exit;
 	int		player;
+	int		p_lig;
+	int		p_col;
 	int		**tab;
 	void	*mlx;	
 	void	*mlx_win;
