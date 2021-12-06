@@ -12,17 +12,8 @@
 
 #include "soo_loong.h"
 
-/*
-int	closeee(int keycode, t_vars *vars)
-{
-	(void)keycode;
-	mlx_destroy_window(vars->mlx, vars->win);
-	return (0);
-}*/
-
 void	ft_test(t_map *map)
 {
-	// closing grace a la croix 
 	mlx_hook(map->mlx_win, 17, 1L << 2, ft_exit, map);
 	mlx_key_hook(map->mlx_win, ft_key, map);
 }
