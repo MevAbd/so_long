@@ -6,7 +6,7 @@
 /*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 05:37:55 by malbrand          #+#    #+#             */
-/*   Updated: 2021/12/05 13:39:57 by malbrand         ###   ########.fr       */
+/*   Updated: 2021/12/06 20:40:07 by malbrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,26 @@ t_map	ft_rectangular(int fd)
 	return (map);
 }
 
+void	ft_ber(char *av)
+{
+	int		i;
+
+	i = 0;
+	while (av[i] != '\0')
+		i++;
+	if (av[i - 1] != 'r' || av[i - 2] != 'e' || av[i - 3] != 'b')
+	{
+		write(1, "Error\nIs not a .ber\n", 20);
+		exit(0);
+	}
+}
+
 t_map	ft_error(int fd, char *av)
 {
 	t_map	map;
 	int		fd_bis;
 
+	ft_ber(av);
 	fd_bis = open(av, O_RDONLY);
 	map = ft_rectangular(fd);
 	if (map.exit == 0)
