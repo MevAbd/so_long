@@ -2,10 +2,10 @@ SRC = main.c $(wildcard gnl/*.c) $(wildcard lib/*.c) $(wildcard parsing/*.c) $(w
 
 OBJ = ${SRC:.c=.o}
 
-FLAGS = -Wall -Wextra -Werror -fsanitize=address
+FLAGS = -Wall -Wextra -Werror #-fsanitize=address
 
-#MLX_FLAGS = -L./../mlx -L./../mlx -lmlx -lXext -lX11
-MLX_FLAGS = -L/usr/X11/lib -L/usr/local/lib -lmlx -lXext -lX11
+MLX_FLAGS = -L./../../mlx -L./../../mlx -lmlx -lXext -lX11
+#MLX_FLAGS = -L/usr/X11/lib -L/usr/local/lib -lmlx -lXext -lX11
 
 .c.o:
 	gcc $(FLAGS) -c $< -o $(<:.c=.o)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   moove_bis.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/06 18:34:43 by malbrand          #+#    #+#             */
+/*   Updated: 2021/12/06 18:34:45 by malbrand         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "./../soo_loong.h"
 
 int	ft_exit(t_map *map)
@@ -19,9 +31,7 @@ void	ft_moov_d(t_map *map)
 		ft_putnbr(map->moove);
 		write(1, "\n", 1);
 	}
-	mlx_put_image_to_window(map->mlx, map->mlx_win,
-		map->add_img->player_down, map->p_col * IMG_H, map->p_lig * IMG_W);
-	if (map->p_lig + 1 < map->nlig - 1
+	else if (map->p_lig + 1 < map->nlig - 1
 		&& map->tab[map->p_lig + 1][map->p_col] == 3 && map->coll == 0)
 	{
 		map->moove++;
@@ -31,6 +41,8 @@ void	ft_moov_d(t_map *map)
 		write(1, "!!!WIN!!!\n", 10);
 		ft_exit(map);
 	}
+	mlx_put_image_to_window(map->mlx, map->mlx_win,
+		map->add_img->player_down, map->p_col * IMG_H, map->p_lig * IMG_W);
 }
 
 void	ft_moove_down(t_map *map)

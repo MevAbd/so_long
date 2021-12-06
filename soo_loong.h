@@ -6,7 +6,7 @@
 /*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 07:37:14 by malbrand          #+#    #+#             */
-/*   Updated: 2021/12/05 13:36:44 by malbrand         ###   ########.fr       */
+/*   Updated: 2021/12/06 18:02:40 by malbrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include <mlx.h>
-//# include "../mlx/mlx.h"
+//# include <mlx.h>
+# include "./../../mlx/mlx.h"
 
 # define BUFFER_SIZE 6
 # define IMG_W 32
@@ -44,7 +44,7 @@ typedef struct s_img
 	void	*coll;
 	void	*wall_inside;
 	void	*exit;
-	void	*enemy;
+	void	*enemys;
 }				t_img;
 
 typedef struct s_map
@@ -85,6 +85,7 @@ void	ft_init_img_bis(t_map *map);
 void	ft_create_map(t_map *map);
 void	ft_put_map(t_map map);
 void	ft_put_img(t_map map);
+void	ft_put_bis(t_map map, int lig, int col);
 void	ft_put_wall_left(t_map map);
 void	ft_put_wall_right(t_map map);
 void	ft_put_wall_up(t_map map);

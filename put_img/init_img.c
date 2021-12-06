@@ -6,20 +6,16 @@
 /*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 02:28:10 by malbrand          #+#    #+#             */
-/*   Updated: 2021/12/05 12:51:42 by malbrand         ###   ########.fr       */
+/*   Updated: 2021/12/06 18:29:50 by malbrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../soo_loong.h"
 
-void	ft_init_img_bis(t_map *map)
+void	ft_init_img_bis(t_map *map, int height, int width)
 {
 	char	*path;
-	int		width;
-	int		height;
 
-	width = 0;
-	height = 0;
 	path = "./img_final/w_d_right.XPM";
 	map->add_img->corner_d_r = mlx_xpm_file_to_image(map->mlx, path,
 			&width, &height);
@@ -39,7 +35,7 @@ void	ft_init_img_bis(t_map *map)
 	map->add_img->player_down = mlx_xpm_file_to_image(map->mlx, path,
 			&width, &height);
 	path = "./img_final/ennemie.xpm";
-	map->add_img->enemy = mlx_xpm_file_to_image(map->mlx, path,
+	map->add_img->enemys = mlx_xpm_file_to_image(map->mlx, path,
 			&width, &height);
 }
 
@@ -94,7 +90,7 @@ void	ft_init_img(t_map *map)
 	path = "./img_final/wall_left.XPM";
 	map->add_img->wall_left = mlx_xpm_file_to_image(map->mlx, path,
 			&width, &height);
-	ft_init_img_bis(map);
+	ft_init_img_bis(map, height, width);
 	ft_init_img_ter(map);
 }
 

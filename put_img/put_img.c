@@ -6,7 +6,7 @@
 /*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 12:51:26 by malbrand          #+#    #+#             */
-/*   Updated: 2021/12/05 13:04:51 by malbrand         ###   ########.fr       */
+/*   Updated: 2021/12/06 18:01:08 by malbrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,33 +90,12 @@ void	ft_put_corner(t_map map)
 		((map.nlig - 1) * IMG_W));
 }
 
-void	ft_put_img(t_map map)
+void	ft_put_bis(t_map map, int lig, int col)
 {
-	int	lig;
-	int	col;
-
-	lig = 0;
-	ft_put_corner(map);
-	while (++lig < map.nlig - 1)
-	{
-		col = 0;
-		while (++col < map.ncol - 1)
-		{
-			if (map.tab[lig][col] == 2)
-				mlx_put_image_to_window(map.mlx, map.mlx_win,
-					map.add_img->coll, col * IMG_H, lig * IMG_W);
-			else if (map.tab[lig][col] == 1)
-				mlx_put_image_to_window(map.mlx, map.mlx_win,
-					map.add_img->wall_inside, col * IMG_H, lig * IMG_W);
-			else if (map.tab[lig][col] == 3)
-				mlx_put_image_to_window(map.mlx, map.mlx_win,
-					map.add_img->exit, col * IMG_H, lig * IMG_W);
-			else if (map.tab[lig][col] == 4)
-				mlx_put_image_to_window(map.mlx, map.mlx_win,
-					map.add_img->player_down, col * IMG_H, lig * IMG_W);
-			else if (map.tab[lig][col] == 5)
-				mlx_put_image_to_window(map.mlx, map.mlx_win,
-					map.add_img->enemy, col * IMG_H, lig * IMG_W);
-		}
-	}
+	if (map.tab[lig][col] == 4)
+		mlx_put_image_to_window(map.mlx, map.mlx_win,
+			map.add_img->player_down, col * IMG_H, lig * IMG_W);
+	else if (map.tab[lig][col] == 5)
+		mlx_put_image_to_window(map.mlx, map.mlx_win,
+			map.add_img->enemys, col * IMG_H, lig * IMG_W);
 }
