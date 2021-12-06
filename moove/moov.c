@@ -26,6 +26,15 @@ void	ft_moove_left_b(t_map *map)
 		write(1, "!!!WIN!!!\n", 10);
 		ft_exit(map);
 	}
+	else if (map->p_col - 1 > 0 && map->tab[map->p_lig][map->p_col - 1] == 5)
+	{
+		map->moove++;
+		write(1, "moove : ", 8);
+		ft_putnbr(map->moove);
+		write(1, "\n", 1);
+		write(1, "!!!YOU LOSE!!!\n", 15);
+		ft_exit(map);
+	}
 }
 
 void	ft_moove_left(t_map *map)
@@ -66,6 +75,16 @@ void	ft_moove_right_b(t_map *map)
 		ft_putnbr(map->moove);
 		write(1, "\n", 1);
 		write(1, "!!!WIN!!!\n", 10);
+		ft_exit(map);
+	}
+	else if (map->p_col + 1 < map->ncol - 1
+		&& map->tab[map->p_lig][map->p_col + 1] == 5)
+	{
+		map->moove++;
+		write(1, "moove : ", 8);
+		ft_putnbr(map->moove);
+		write(1, "\n", 1);
+		write(1, "!!!YOU LOSE!!!\n", 15);
 		ft_exit(map);
 	}
 }

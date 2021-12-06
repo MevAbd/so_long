@@ -27,6 +27,8 @@ t_map	ft_check_map(char *str, t_map map)
 			map.exit += 1;
 		else if (str[i] == 'P')
 			map.player += 1;
+		else if (str[i] == 'L')
+			map.enemy += 1;
 		else if (str[i] != '1' && str[i] != 'C'
 			&& str[i] != 'E' && str[i] != 'P' && str[i] != '0')
 		{
@@ -45,6 +47,7 @@ t_map	ft_init_struct(t_map *map)
 	map->wall = 0;
 	map->coll = 0;
 	map->exit = 0;
+	map->enemy = 0;
 	map->player = 0;
 	map->moove = 0;
 	return (*map);

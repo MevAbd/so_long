@@ -22,6 +22,8 @@ t_map	ft_fill_bis(t_map map, char c, int lig, int col)
 		map.tab[lig][col] = 2;
 	else if (c == 'E')
 		map.tab[lig][col] = 3;
+	else if (c == 'L')
+		map.tab[lig][col] = 5;
 	else if (c == 'P')
 	{
 		map.tab[lig][col] = 4;

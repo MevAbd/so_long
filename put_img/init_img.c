@@ -38,6 +38,9 @@ void	ft_init_img_bis(t_map *map)
 	path = "./img_final/down.xpm";
 	map->add_img->player_down = mlx_xpm_file_to_image(map->mlx, path,
 			&width, &height);
+	path = "./img_final/ennemie.xpm";
+	map->add_img->enemy = mlx_xpm_file_to_image(map->mlx, path,
+			&width, &height);
 }
 
 void	ft_init_img_ter(t_map *map)

@@ -44,6 +44,7 @@ typedef struct s_img
 	void	*coll;
 	void	*wall_inside;
 	void	*exit;
+	void	*enemy;
 }				t_img;
 
 typedef struct s_map
@@ -54,6 +55,7 @@ typedef struct s_map
 	int		wall;
 	int		coll;
 	int		exit;
+	int		enemy;
 	int		player;
 	int		p_lig;
 	int		p_col;

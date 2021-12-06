@@ -114,6 +114,9 @@ void	ft_put_img(t_map map)
 			else if (map.tab[lig][col] == 4)
 				mlx_put_image_to_window(map.mlx, map.mlx_win,
 					map.add_img->player_down, col * IMG_H, lig * IMG_W);
+			else if (map.tab[lig][col] == 5)
+				mlx_put_image_to_window(map.mlx, map.mlx_win,
+					map.add_img->enemy, col * IMG_H, lig * IMG_W);
 		}
 	}
 }

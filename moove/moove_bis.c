@@ -47,6 +47,16 @@ void	ft_moove_down(t_map *map)
 		ft_putnbr(map->moove);
 		write(1, "\n", 1);
 	}
+	else if (map->p_lig + 1 < map->nlig - 1
+		&& map->tab[map->p_lig + 1][map->p_col] == 5)
+	{
+		map->moove++;
+		write(1, "moove : ", 8);
+		ft_putnbr(map->moove);
+		write(1, "\n", 1);
+		write(1, "!!!YOU LOSE!!!\n", 15);
+		ft_exit(map);
+	}
 	ft_moov_d(map);
 }
 
@@ -62,6 +72,15 @@ void	ft_moove_up_b(t_map *map)
 		ft_putnbr(map->moove);
 		write(1, "\n", 1);
 		write(1, "!!!WIN!!!\n", 10);
+		ft_exit(map);
+	}
+	else if (map->p_lig - 1 > 0 && map->tab[map->p_lig - 1][map->p_col] == 5)
+	{
+		map->moove++;
+		write(1, "moove : ", 8);
+		ft_putnbr(map->moove);
+		write(1, "\n", 1);
+		write(1, "!!!YOU LOSE!!!\n", 15);
 		ft_exit(map);
 	}
 }
