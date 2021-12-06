@@ -6,7 +6,7 @@
 /*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 02:28:10 by malbrand          #+#    #+#             */
-/*   Updated: 2021/12/06 18:29:50 by malbrand         ###   ########.fr       */
+/*   Updated: 2021/12/06 19:55:32 by malbrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,19 @@ void	ft_init_img_bis(t_map *map, int height, int width)
 			&width, &height);
 }
 
-void	ft_init_img_ter(t_map *map)
+void	ft_init_image(t_map *map, int width, int height)
 {
 	char	*path;
-	int		width;
-	int		height;
 
-	width = 0;
-	height = 0;
+	path = "./img_final/wall_down.xpm";
+	map->add_img->wall_down = mlx_xpm_file_to_image(map->mlx, path,
+			&width, &height);
+}
+
+void	ft_init_img_ter(t_map *map, int width, int height)
+{
+	char	*path;
+
 	path = "./img_final/angle.XPM";
 	map->add_img->corner_h_l = mlx_xpm_file_to_image(map->mlx, path,
 			&width, &height);
@@ -65,9 +70,13 @@ void	ft_init_img_ter(t_map *map)
 	path = "./img_final/wall_right.XPM";
 	map->add_img->wall_right = mlx_xpm_file_to_image(map->mlx, path,
 			&width, &height);
+	path = "./img_final/wall_left.XPM";
+	map->add_img->wall_left = mlx_xpm_file_to_image(map->mlx, path,
+			&width, &height);
+	ft_init_image(map, width, height);
 }
 
-void	ft_init_img(t_map *map)
+int	ft_init_img(t_map *map)
 {
 	char	*path;
 	int		width;
@@ -75,6 +84,11 @@ void	ft_init_img(t_map *map)
 	t_img	*img;
 
 	img = malloc(sizeof(t_img));
+	if (!img)
+	{
+		ft_exit(map);
+		return (0);
+	}
 	map->add_img = img;
 	width = 0;
 	height = 0;
@@ -84,53 +98,7 @@ void	ft_init_img(t_map *map)
 	path = "./img_final/wall_up.xpm";
 	map->add_img->wall_up = mlx_xpm_file_to_image(map->mlx, path,
 			&width, &height);
-	path = "./img_final/wall_down.xpm";
-	map->add_img->wall_down = mlx_xpm_file_to_image(map->mlx, path,
-			&width, &height);
-	path = "./img_final/wall_left.XPM";
-	map->add_img->wall_left = mlx_xpm_file_to_image(map->mlx, path,
-			&width, &height);
 	ft_init_img_bis(map, height, width);
-	ft_init_img_ter(map);
-}
-
-void	ft_put_map(t_map map)
-{
-	int		lig;
-	int		col;
-
-	lig = 0;
-	col = 0;
-	while (lig < map.nlig)
-	{
-		col = 0;
-		while (col < map.ncol)
-		{
-			mlx_put_image_to_window(map.mlx, map.mlx_win, map.add_img->ground,
-				col * IMG_H, lig * IMG_W);
-			col++;
-		}
-		lig++;
-	}
-}
-
-void	ft_put_wall_up(t_map map)
-{
-	int	lig;
-	int	col;
-
-	lig = 0;
-	col = 0;
-	ft_put_map(map);
-	while (lig < 1)
-	{
-		col = 0;
-		while (col < map.ncol)
-		{
-			mlx_put_image_to_window(map.mlx, map.mlx_win, map.add_img->wall_up,
-				col * IMG_H, lig * IMG_W);
-			col++;
-		}
-		lig++;
-	}
+	ft_init_img_ter(map, height, width);
+	return (1);
 }

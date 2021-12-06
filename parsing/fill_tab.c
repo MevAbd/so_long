@@ -6,7 +6,7 @@
 /*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 05:38:33 by malbrand          #+#    #+#             */
-/*   Updated: 2021/12/05 13:40:31 by malbrand         ###   ########.fr       */
+/*   Updated: 2021/12/06 20:19:51 by malbrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,22 @@ t_map	ft_fill_bis(t_map map, char c, int lig, int col)
 	return (map);
 }
 
+t_map	ft_malloc(t_map map)
+{
+	map.tab = (int **)malloc(map.nlig * sizeof(int *));
+	if (!map.tab)
+		ft_exit(&map);
+	return (map);
+}
+
+t_map	ft_malloc_bis(t_map map, int *lig)
+{
+	map.tab[++(*lig)] = (int *)malloc((map.ncol + 1) * sizeof (int));
+	if (!map.tab[(*lig)])
+		ft_exit(&map);
+	return (map);
+}
+
 t_map	ft_fill_tab(t_map map, int fd)
 {
 	int		lig;
@@ -41,13 +57,13 @@ t_map	ft_fill_tab(t_map map, int fd)
 	int		i;
 
 	lig = -1;
-	map.tab = (int **)malloc(map.nlig * sizeof(int *));
+	map = ft_malloc(map);
 	str = get_next_line(fd);
 	while (str)
 	{
 		if (str != NULL)
 		{
-			map.tab[++lig] = (int *)malloc((map.ncol + 1) * sizeof (int));
+			map = ft_malloc_bis(map, &lig);
 			col = -1;
 			i = -1;
 			while (++i < map.ncol)
@@ -60,12 +76,12 @@ t_map	ft_fill_tab(t_map map, int fd)
 	return (map);
 }
 
-void	ft_free_tab(t_map map)
+void	ft_free_tab(t_map *map)
 {
 	int	i;
 
 	i = 0;
-	while (i < map.nlig)
-		free(map.tab[i++]);
-	free(map.tab);
+	while (i < map->nlig)
+		free(map->tab[i++]);
+	free(map->tab);
 }

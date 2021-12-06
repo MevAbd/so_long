@@ -6,7 +6,7 @@
 /*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 17:56:50 by malbrand          #+#    #+#             */
-/*   Updated: 2021/12/06 18:34:15 by malbrand         ###   ########.fr       */
+/*   Updated: 2021/12/06 19:55:00 by malbrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,46 @@ void	ft_put_img(t_map map)
 			else
 				ft_put_bis(map, lig, col);
 		}
+	}
+}
+
+void	ft_put_map(t_map map)
+{
+	int		lig;
+	int		col;
+
+	lig = 0;
+	col = 0;
+	while (lig < map.nlig)
+	{
+		col = 0;
+		while (col < map.ncol)
+		{
+			mlx_put_image_to_window(map.mlx, map.mlx_win, map.add_img->ground,
+				col * IMG_H, lig * IMG_W);
+			col++;
+		}
+		lig++;
+	}
+}
+
+void	ft_put_wall_up(t_map map)
+{
+	int	lig;
+	int	col;
+
+	lig = 0;
+	col = 0;
+	ft_put_map(map);
+	while (lig < 1)
+	{
+		col = 0;
+		while (col < map.ncol)
+		{
+			mlx_put_image_to_window(map.mlx, map.mlx_win, map.add_img->wall_up,
+				col * IMG_H, lig * IMG_W);
+			col++;
+		}
+		lig++;
 	}
 }

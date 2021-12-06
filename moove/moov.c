@@ -6,7 +6,7 @@
 /*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 13:06:42 by malbrand          #+#    #+#             */
-/*   Updated: 2021/12/05 13:47:50 by malbrand         ###   ########.fr       */
+/*   Updated: 2021/12/06 19:46:05 by malbrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,5 +127,7 @@ int	ft_key(int key, t_map *map)
 		ft_moove_right(map);
 	else if (key == 115)
 		ft_moove_down(map);
+	else if (key == 65307)
+		ft_exit(map);
 	return (0);
 }

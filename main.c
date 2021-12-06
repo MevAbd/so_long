@@ -6,7 +6,7 @@
 /*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 02:31:26 by malbrand          #+#    #+#             */
-/*   Updated: 2021/12/06 18:18:41 by malbrand         ###   ########.fr       */
+/*   Updated: 2021/12/06 19:23:37 by malbrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	main(int ac, char **av)
 
 	if (ac == 2)
 	{
-		printf("coucou\n");
 		fd = open(av[1], O_RDONLY);
 		map = ft_error(fd, av[1]);
 		if (map.map_error == 0)
@@ -37,7 +36,6 @@ int	main(int ac, char **av)
 			ft_put_img(map);
 			ft_test(&map);
 			mlx_loop(map.mlx);
-			free(map.add_img);
 		}
 	}
 	else

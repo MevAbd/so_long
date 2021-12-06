@@ -6,17 +6,11 @@
 /*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 18:34:43 by malbrand          #+#    #+#             */
-/*   Updated: 2021/12/06 18:34:45 by malbrand         ###   ########.fr       */
+/*   Updated: 2021/12/06 20:03:41 by malbrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../soo_loong.h"
-
-int	ft_exit(t_map *map)
-{
-	mlx_destroy_window(map->mlx, map->mlx_win);
-	return (0);
-}
 
 void	ft_moov_d(t_map *map)
 {
