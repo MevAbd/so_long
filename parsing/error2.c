@@ -6,7 +6,7 @@
 /*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 12:41:58 by malbrand          #+#    #+#             */
-/*   Updated: 2021/12/06 20:22:24 by malbrand         ###   ########.fr       */
+/*   Updated: 2021/12/07 12:31:52 by malbrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,4 @@ void	ft_write_error(t_map map)
 		write(1, "Error\nMissing collectible\n", 26);
 	else if (map.map_error == 6)
 		write(1, "Error\nMissing of wall at the outlines\n", 38);
-	ft_free_tab(&map);
 }

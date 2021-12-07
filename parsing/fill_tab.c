@@ -6,7 +6,7 @@
 /*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 05:38:33 by malbrand          #+#    #+#             */
-/*   Updated: 2021/12/06 20:19:51 by malbrand         ###   ########.fr       */
+/*   Updated: 2021/12/07 12:32:46 by malbrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,9 @@ void	ft_free_tab(t_map *map)
 
 	i = 0;
 	while (i < map->nlig)
-		free(map->tab[i++]);
+	{
+		free(map->tab[i]);
+		i++;
+	}
 	free(map->tab);
 }

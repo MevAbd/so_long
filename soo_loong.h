@@ -6,7 +6,7 @@
 /*   By: malbrand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 07:37:14 by malbrand          #+#    #+#             */
-/*   Updated: 2021/12/06 19:51:18 by malbrand         ###   ########.fr       */
+/*   Updated: 2021/12/07 11:48:39 by malbrand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-//# include <mlx.h>
-# include "./../../mlx/mlx.h"
+# include "./mlx/mlx.h"
 
 # define BUFFER_SIZE 6
 # define IMG_W 32
@@ -97,6 +96,7 @@ void	ft_write_error(t_map map);
 void	ft_putnbr(int nb);
 void	ft_moove_up(t_map *map);
 void	ft_moove_down(t_map *map);
+void	ft_write(t_map *map);
 
 t_map	ft_fill_tab(t_map map, int fd);
 t_map	ft_error(int fd, char *av);

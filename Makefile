@@ -1,11 +1,23 @@
-SRC = main.c $(wildcard gnl/*.c) $(wildcard lib/*.c) $(wildcard parsing/*.c) $(wildcard put_img/*.c) $(wildcard moove/*.c)
+SRC = main.c \
+		./gnl/gnl.c \
+		./gnl/gnl_utils.c \
+		./lib/lib.c \
+		./moove/exit.c \
+		./moove/moov.c \
+		./moove/moove_bis.c \
+		./moove/write.c \
+		./parsing/error.c \
+		./parsing/error2.c \
+		./parsing/fill_tab.c \
+		./put_img/init_img.c \
+		./put_img/put.c \
+		./put_img/put_img.c
 
 OBJ = ${SRC:.c=.o}
 
-FLAGS = -Wall -Wextra -Werror #-fsanitize=address
+FLAGS = -Wall -Wextra -Werror
 
-MLX_FLAGS = -L./../../mlx -L./../../mlx -lmlx -lXext -lX11
-#MLX_FLAGS = -L/usr/X11/lib -L/usr/local/lib -lmlx -lXext -lX11
+MLX_FLAGS = -L./mlx -L./mlx -lmlx -lXext -lX11
 
 .c.o:
 	gcc $(FLAGS) -c $< -o $(<:.c=.o)
